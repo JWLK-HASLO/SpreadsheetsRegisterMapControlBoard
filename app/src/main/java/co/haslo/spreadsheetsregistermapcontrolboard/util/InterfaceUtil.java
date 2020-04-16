@@ -14,6 +14,16 @@ public class InterfaceUtil {
         }
     }
 
+    public static void scrollTop(TextView textView) {
+        int lineTop =  textView.getLayout().getLineTop(textView.getLineCount()) ;
+        int scrollY = textView.getHeight()-lineTop;
+        if (scrollY > 0) {
+            textView.scrollTo(0, 0);
+        } else {
+            textView.scrollTo(0, scrollY);
+        }
+    }
+
 
 
 }

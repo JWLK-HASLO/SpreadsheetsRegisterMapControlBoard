@@ -36,7 +36,6 @@ public class FullscreenController {
         actionBar.setTitle(Html.fromHtml("<small>SCAN & LOG</small>"));
     }
     private void setScreenControl() {
-        Dlog.d("Set");
         mVisible = true;
         mControlsView = appCompatActivity.findViewById(R.id.fullscreen_content_controls);
         mContentView = appCompatActivity.findViewById(R.id.fullscreen_content);
@@ -135,7 +134,7 @@ public class FullscreenController {
         }
     };
 
-    private void toggle() {
+    public void toggle() {
         if (mVisible) {
             hide();
         } else {

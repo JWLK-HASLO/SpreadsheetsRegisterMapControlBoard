@@ -3,9 +3,8 @@ package co.haslo.spreadsheetsregistermapcontrolboard;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.util.Log;
 
-import co.haslo.spreadsheetsregistermapcontrolboard.util.CustomAnimationDialog;
+import co.haslo.spreadsheetsregistermapcontrolboard.usbDeviceManager.DeviceHandler;
 import co.haslo.spreadsheetsregistermapcontrolboard.util.Dlog;
 
 /**
@@ -14,13 +13,14 @@ import co.haslo.spreadsheetsregistermapcontrolboard.util.Dlog;
  */
 public class FullscreenActivity extends AppCompatActivity {
 
+    public DeviceHandler mDeviceHandler;
     /**
      * Get Function Activity
      */
     private Dlog mDlog = new Dlog(this);
-    private FullscreenClickAction mFullscreenClickAction = new FullscreenClickAction(this);
-    private FullscreenController mFullscreenController = new FullscreenController(this);
-    private FullscreenLogBox mFullscreenLogBox = new FullscreenLogBox(this);
+    public FullscreenClickAction mFullscreenClickAction;
+    public FullscreenController mFullscreenController;
+    public FullscreenLogBox mFullscreenLogBox;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,10 +32,58 @@ public class FullscreenActivity extends AppCompatActivity {
             Dlog.d("Debugging Status: "+isDebuggable);
         }
 
-        mFullscreenClickAction.initialize();
-        mFullscreenController.initialize();
-        mFullscreenLogBox.initialize();
+        mDeviceHandler = new DeviceHandler(this);
+        mFullscreenController = new FullscreenController(this);
+        mFullscreenClickAction = new FullscreenClickAction(this, mDeviceHandler);
+        mFullscreenLogBox = new FullscreenLogBox(this);
 
+        mDeviceHandler.initialize();
+        mFullscreenClickAction.initialize();
+        mFullscreenLogBox.initialize();
+        mFullscreenController.initialize();
+
+    }
+
+    protected void onStart() {
+        super.onStart();
+        Dlog.d("onStart");
+        mDeviceHandler.handlingStart();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Dlog.d("onResume");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Dlog.d("onPause");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Dlog.d("onStop");
+        mDeviceHandler.handlingStop();
+        Dlog.i("Device Handler Stop And Reset Complete");
+        mDeviceHandler.handlingClear();
+        Dlog.i("Device Handler Clear Complete");
+
+        Dlog.i("onStop Completed");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Dlog.d("onDestroy");
+    }
+
+    @Override
+    public void onBackPressed() {
+        Dlog.d("Application Finish");
+        finish();
     }
 
 }
