@@ -16,11 +16,11 @@ public class FullscreenActivity extends AppCompatActivity {
 
     /**
      * Get Function Activity
-     * 1. FullscreenClickAction
      */
     private Dlog mDlog = new Dlog(this);
     private FullscreenClickAction mFullscreenClickAction = new FullscreenClickAction(this);
     private FullscreenController mFullscreenController = new FullscreenController(this);
+    private FullscreenLogBox mFullscreenLogBox = new FullscreenLogBox(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +34,7 @@ public class FullscreenActivity extends AppCompatActivity {
 
         mFullscreenClickAction.initialize();
         mFullscreenController.initialize();
+        mFullscreenLogBox.initialize();
 
     }
 
