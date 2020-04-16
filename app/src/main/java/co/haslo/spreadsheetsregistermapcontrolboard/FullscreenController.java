@@ -1,85 +1,59 @@
 package co.haslo.spreadsheetsregistermapcontrolboard;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.content.Intent;
-import android.os.Bundle;
 import android.os.Handler;
+import android.text.Html;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Button;
 
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 
 import co.haslo.spreadsheetsregistermapcontrolboard.util.Dlog;
 
-public class ButtonActionFullscreen {
+public class FullscreenController {
 
-    private FullscreenActivity mFullscreenActivity;
+    private AppCompatActivity appCompatActivity;
 
-    /* View Component */
-
-
-    ButtonActionFullscreen(FullscreenActivity activity) {
-        mFullscreenActivity = activity;
-        Dlog.d("ButtonActionFullScreen ButtonActionFullScrean Ready");
+    FullscreenController(AppCompatActivity appCompatActivity) {
+        this.appCompatActivity = appCompatActivity;
     }
 
     void initialize() {
-        Dlog.d("ButtonActionFullScreen initialize Ready");
-        delayedHide(100);
-        setButtonAction();
+        Dlog.d("Ready");
+        delayedHide(500);
+        setActionBarControl();
         setScreenControl();
     }
-
-
-    /**
-     * HIDE BUTTON VALUE & FUNCTION
-     */
-
-    private void setButtonAction() {
-        setHideButtonRegisterMap();
-    }
-
-    private void setHideButtonRegisterMap() {
-        Button mHideButtonRegisterMap = (Button) mFullscreenActivity.findViewById(R.id.hide_button_register_map);
-        mHideButtonRegisterMap.setOnClickListener(new Button.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Dlog.d("setHideButtonRegisterMap Ready");
-                Intent secreen = new Intent(mFullscreenActivity.getApplicationContext(),RegisterMap.class);
-                mFullscreenActivity.startActivityForResult(secreen,1001);
-
-            }
-        });
-    }
-
-
-
-
 
     /**
      * SCREEN CONTROL VALUE & FUNCTION
      */
 
-    public void setScreenControl() {
+    private void setActionBarControl() {
+        ActionBar actionBar = appCompatActivity.getSupportActionBar();
+        assert actionBar != null;
+        actionBar.setTitle(Html.fromHtml("<small>SCAN & LOG</small>"));
+    }
+    private void setScreenControl() {
+        Dlog.d("Set");
         mVisible = true;
-        mControlsView = mFullscreenActivity.findViewById(R.id.fullscreen_content_controls);
-        mContentView = mFullscreenActivity.findViewById(R.id.fullscreen_content);
+        mControlsView = appCompatActivity.findViewById(R.id.fullscreen_content_controls);
+        mContentView = appCompatActivity.findViewById(R.id.fullscreen_content);
 
 
         // Set up the user interaction to manually show or hide the system UI.
         mContentView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                toggle();
+                //toggle();
+                show();
             }
         });
-
         // Upon interacting with UI controls, delay any scheduled hide()
         // operations to prevent the jarring behavior of controls going away
         // while interacting with the UI.
-        mFullscreenActivity.findViewById(R.id.dummy_button).setOnTouchListener(mDelayHideTouchListener);
+        appCompatActivity.findViewById(R.id.dummy_button).setOnTouchListener(mDelayHideTouchListener);
     }
 
     /**
@@ -92,7 +66,7 @@ public class ButtonActionFullscreen {
      * If {@link #AUTO_HIDE} is set, the number of milliseconds to wait after
      * user interaction before hiding the system UI.
      */
-    private static final int AUTO_HIDE_DELAY_MILLIS = 3000;
+    private static final int AUTO_HIDE_DELAY_MILLIS = 1000;
 
     /**
      * Some older devices needs a small delay between UI widget updates
@@ -120,6 +94,7 @@ public class ButtonActionFullscreen {
                     | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
                     | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                     | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
+
         }
     };
 
@@ -131,7 +106,7 @@ public class ButtonActionFullscreen {
         @Override
         public void run() {
             // Delayed display of UI elements
-            ActionBar actionBar = mFullscreenActivity.getSupportActionBar();
+            ActionBar actionBar = appCompatActivity.getSupportActionBar();
             if (actionBar != null) {
                 actionBar.show();
             }
@@ -170,7 +145,7 @@ public class ButtonActionFullscreen {
 
     private void hide() {
         // Hide UI first
-        ActionBar actionBar = mFullscreenActivity.getSupportActionBar();
+        ActionBar actionBar = appCompatActivity.getSupportActionBar();
         if (actionBar != null) {
             actionBar.hide();
         }
@@ -198,13 +173,9 @@ public class ButtonActionFullscreen {
      * Schedules a call to hide() in delay milliseconds, canceling any
      * previously scheduled calls.
      */
-    public void delayedHide(int delayMillis) {
+    private void delayedHide(int delayMillis) {
         mHideHandler.removeCallbacks(mHideRunnable);
         mHideHandler.postDelayed(mHideRunnable, delayMillis);
     }
-
-
-
-
 
 }

@@ -1,17 +1,12 @@
 package co.haslo.spreadsheetsregistermapcontrolboard;
 
-import android.annotation.SuppressLint;
-
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
-import android.content.pm.ApplicationInfo;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.os.Handler;
-import android.view.MotionEvent;
-import android.view.View;
+import android.util.Log;
+
+import co.haslo.spreadsheetsregistermapcontrolboard.util.CustomAnimationDialog;
+import co.haslo.spreadsheetsregistermapcontrolboard.util.Dlog;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -20,44 +15,26 @@ import android.view.View;
 public class FullscreenActivity extends AppCompatActivity {
 
     /**
-     * Debug Value
-     */
-    public static boolean DEBUG = false;
-
-    /**
      * Get Function Activity
-     * 1. ButtonActionFullscreen
+     * 1. FullscreenClickAction
      */
-    private ButtonActionFullscreen mButtonActionFullscreen = new ButtonActionFullscreen(this);
+    private Dlog mDlog = new Dlog(this);
+    private FullscreenClickAction mFullscreenClickAction = new FullscreenClickAction(this);
+    private FullscreenController mFullscreenController = new FullscreenController(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.DEBUG = isDebuggable(this);
         setContentView(R.layout.activity_fullscreen);
 
-        mButtonActionFullscreen.initialize();
-
-
-    }
-
-    /**
-     * get Debug Mode
-     *
-     * @param context
-     * @return
-     */
-    private boolean isDebuggable(Context context) {
-        boolean debuggable = false;
-
-        PackageManager pm = context.getPackageManager();
-        try {
-            ApplicationInfo appinfo = pm.getApplicationInfo(context.getPackageName(), 0);
-            debuggable = (0 != (appinfo.flags & ApplicationInfo.FLAG_DEBUGGABLE));
-        } catch (PackageManager.NameNotFoundException e) {
-            /* debuggable variable will remain false */
+        if(mDlog != null){
+            boolean isDebuggable = Dlog.isDebuggable();
+            Dlog.d("Debugging Status: "+isDebuggable);
         }
 
-        return debuggable;
+        mFullscreenClickAction.initialize();
+        mFullscreenController.initialize();
+
     }
+
 }

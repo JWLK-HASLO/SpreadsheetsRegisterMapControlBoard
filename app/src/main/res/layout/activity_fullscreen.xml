@@ -62,7 +62,7 @@
         android:fitsSystemWindows="true">
 
         <LinearLayout
-            android:id="@+id/fullscreen_menu"
+            android:id="@+id/fullscreen_side"
             android:orientation="horizontal"
             style="?metaButtonBarStyle"
             android:layout_width="150dp"
@@ -73,7 +73,7 @@
             tools:ignore="UselessParent">
 
             <Button
-                android:id="@+id/menu_button_set"
+                android:id="@+id/side_button_set"
                 style="?metaButtonBarButtonStyle"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -81,7 +81,7 @@
                 android:text="SET" />
 
             <Button
-                android:id="@+id/menu_button_start"
+                android:id="@+id/side_button_start"
                 style="?metaButtonBarButtonStyle"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -114,7 +114,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/dummy_button" />
+                android:text="HIDE" />
 
         </LinearLayout>
     </FrameLayout>
