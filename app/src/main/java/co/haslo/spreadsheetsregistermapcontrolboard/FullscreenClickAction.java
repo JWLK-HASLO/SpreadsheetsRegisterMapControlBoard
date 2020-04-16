@@ -13,6 +13,8 @@ import co.haslo.spreadsheetsregistermapcontrolboard.util.CustomAnimationDialog;
 import co.haslo.spreadsheetsregistermapcontrolboard.util.Dlog;
 import co.haslo.spreadsheetsregistermapcontrolboard.util.InterfaceUtil;
 
+import static co.haslo.spreadsheetsregistermapcontrolboard.util.InterfaceUtil.showToast;
+
 public class FullscreenClickAction {
 
     private AppCompatActivity appCompatActivity;
@@ -60,7 +62,7 @@ public class FullscreenClickAction {
         mButton.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(appCompatActivity,"Clear Log Box", Toast.LENGTH_SHORT).show();
+                showToast(appCompatActivity,"Clear Log Box");
                 FullscreenLogBox.clearLogcat();
                 logBoxText.setText(null);
                 FullscreenLogBox.lengthSaver = 0;
@@ -74,7 +76,7 @@ public class FullscreenClickAction {
         mButton.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(appCompatActivity,"Going to Top!", Toast.LENGTH_SHORT).show();
+                showToast(appCompatActivity,"Going to Top!");
                 InterfaceUtil.scrollTop(logBoxText);
             }
         });
@@ -85,7 +87,7 @@ public class FullscreenClickAction {
         mButton.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(appCompatActivity,"Going to Bottom!", Toast.LENGTH_SHORT).show();
+                showToast(appCompatActivity,"Going to Bottom!");
                 InterfaceUtil.scrollBottom(logBoxText);
             }
         });
@@ -96,7 +98,7 @@ public class FullscreenClickAction {
         mButton.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(appCompatActivity,"Counter Reset", Toast.LENGTH_SHORT).show();
+                showToast(appCompatActivity,"Counter Reset");
                 mDeviceHandler.resetCounter();
             }
         });
@@ -107,7 +109,7 @@ public class FullscreenClickAction {
         mButton.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(appCompatActivity,"Counter Start", Toast.LENGTH_SHORT).show();
+                showToast(appCompatActivity,"Counter Start");
                 mDeviceHandler.startCounter();
             }
         });
@@ -118,7 +120,7 @@ public class FullscreenClickAction {
         mButton.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(appCompatActivity,"SET Button Click", Toast.LENGTH_SHORT).show();
+                showToast(appCompatActivity,"SET Button Click");
             }
         });
     }
@@ -128,7 +130,7 @@ public class FullscreenClickAction {
         mButton.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(appCompatActivity,"RESET Button Click", Toast.LENGTH_SHORT).show();
+                showToast(appCompatActivity,"RESET Button Click");
                 mDeviceHandler.resetData();
             }
         });
@@ -139,12 +141,10 @@ public class FullscreenClickAction {
         mButton.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(appCompatActivity,"START Button Click", Toast.LENGTH_SHORT).show();
+                showToast(appCompatActivity,"START Button Click");
             }
         });
     }
-
-
 
 
 }

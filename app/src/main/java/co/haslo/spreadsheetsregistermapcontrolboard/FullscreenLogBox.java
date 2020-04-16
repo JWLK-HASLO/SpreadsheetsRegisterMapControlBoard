@@ -82,12 +82,13 @@ public class FullscreenLogBox {
                 //Dlog.i(printString); // Timer
 
                 try {
-                    Thread.sleep(1000);
+                    Thread.sleep(300);
                     if(getLogcat().length() > lengthSaver){
                         lengthSaver = getLogcat().length();
                         setLogcat();
                         InterfaceUtil.scrollBottom(logBoxText);
                     }
+
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

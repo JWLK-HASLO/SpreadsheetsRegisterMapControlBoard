@@ -1,6 +1,9 @@
 package co.haslo.spreadsheetsregistermapcontrolboard.util;
 
+import android.content.Context;
+import android.os.Handler;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class InterfaceUtil {
 
@@ -20,8 +23,20 @@ public class InterfaceUtil {
         if (scrollY > 0) {
             textView.scrollTo(0, 0);
         } else {
-            textView.scrollTo(0, scrollY);
+            textView.scrollBy(0, scrollY);
         }
+    }
+
+    public static void showToast(Context context, String stringValue) {
+        final Toast toast = Toast.makeText(context, stringValue, Toast.LENGTH_SHORT);
+        toast.show();
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                toast.cancel();
+            }
+        }, 500);
     }
 
 

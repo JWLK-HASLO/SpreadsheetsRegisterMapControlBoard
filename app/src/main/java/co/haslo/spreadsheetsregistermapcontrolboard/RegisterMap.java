@@ -23,6 +23,8 @@ import java.util.List;
 
 import co.haslo.spreadsheetsregistermapcontrolboard.util.Dlog;
 
+import static co.haslo.spreadsheetsregistermapcontrolboard.util.InterfaceUtil.showToast;
+
 public class RegisterMap extends AppCompatActivity {
 
     RegisterMapController mRegisterMapController = new RegisterMapController(this);
@@ -46,16 +48,16 @@ public class RegisterMap extends AppCompatActivity {
                 return true;
             }
             case R.id.button_reload:{
-                Toast.makeText(this,"Reload", Toast.LENGTH_SHORT).show();
+                showToast(this,"Reload");
                 loadCloudData();
                 return true;
             }
             case R.id.button_save:{
-                Toast.makeText(this,"Save", Toast.LENGTH_SHORT).show();
+                showToast(this,"Save");
                 return true;
             }
             case R.id.button_setting:{
-                Toast.makeText(this,"Setting", Toast.LENGTH_SHORT).show();
+                showToast(this,"Setting");
                 return true;
             }
 
@@ -67,7 +69,8 @@ public class RegisterMap extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-       return mRegisterMapController.onCreateOptionsMenu(menu);
+        this.getMenuInflater().inflate(R.menu.menu_fullscreen, menu);
+        return true;
     }
 
 
