@@ -22,13 +22,15 @@
             android:layout_weight="1">
 
             <TextView
+                android:id="@+id/log_box_selected"
+                android:scrollbars = "vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="center"
+                android:gravity="center_vertical"
                 android:keepScreenOn="true"
-                android:text="@string/dummy_content"
+                android:text="Selected Data View"
                 android:textColor="@color/colorStroke"
-                android:textSize="50sp"
+                android:textSize="9sp"
                 android:textStyle="bold" />
 
         </LinearLayout>
@@ -40,13 +42,15 @@
             android:layout_weight="2">
 
             <TextView
+                android:id="@+id/log_box_text"
+                android:scrollbars = "vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="center"
+                android:gravity="center_vertical"
                 android:keepScreenOn="true"
-                android:text="@string/dummy_content"
+                android:text="Log Box"
                 android:textColor="@color/colorStroke"
-                android:textSize="50sp"
+                android:textSize="9sp"
                 android:textStyle="bold" />
 
         </LinearLayout>
