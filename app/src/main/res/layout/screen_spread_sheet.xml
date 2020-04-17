@@ -27,5 +27,31 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="bottom|center_horizontal"
+        style="?metaButtonBarStyle"
+        android:background="@color/colorPrimary"
+        tools:ignore="UselessParent">
+
+        <Button
+            android:id="@+id/upload"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            style="?metaButtonBarButtonStyle"
+            android:text="Upload"/>
+        <Button
+            android:id="@+id/download"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            style="?metaButtonBarButtonStyle"
+            android:text="Download"/>
+
+
+    </LinearLayout>
 
 </FrameLayout>

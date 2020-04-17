@@ -21,6 +21,7 @@ public class FullscreenActivity extends AppCompatActivity {
     public FullscreenClickAction mFullscreenClickAction;
     public FullscreenController mFullscreenController;
     public FullscreenLogBox mFullscreenLogBox;
+    public FullscreenImaging mFullscreenImaging;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,11 +37,13 @@ public class FullscreenActivity extends AppCompatActivity {
         mFullscreenController = new FullscreenController(this);
         mFullscreenClickAction = new FullscreenClickAction(this, mDeviceHandler);
         mFullscreenLogBox = new FullscreenLogBox(this);
+        mFullscreenImaging = new FullscreenImaging(this);
 
         mDeviceHandler.initialize();
         mFullscreenClickAction.initialize();
         mFullscreenLogBox.initialize();
         mFullscreenController.initialize();
+        mFullscreenImaging.initialize();
 
     }
 
