@@ -1,13 +1,23 @@
 package co.haslo.spreadsheetsregistermapcontrolboard;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.net.ConnectivityManager;
 import android.net.Network;
 import android.os.AsyncTask;
 import android.text.Html;
 import android.text.TextUtils;
 import android.text.method.ScrollingMovementMethod;
+import android.util.TypedValue;
+import android.view.Gravity;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.GridView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.RelativeLayout.LayoutParams;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -33,6 +43,7 @@ public class RegisterMapController {
 
     private AppCompatActivity appCompatActivity;
     private CustomAnimationDialog mProgress;
+    private GridView mDataGrid;
     private TextView mDataBox;
 
     RegisterMapController(AppCompatActivity appCompatActivity) {
@@ -54,9 +65,58 @@ public class RegisterMapController {
 
     private void setLayoutElement() {
         mProgress = new CustomAnimationDialog(appCompatActivity);
+        mDataGrid = appCompatActivity.findViewById(R.id.data_grid);
         mDataBox = appCompatActivity.findViewById(R.id.data_box);
         mDataBox.setMovementMethod((new ScrollingMovementMethod()));
     }
+
+    public void setDataGridView() {
+        mDataGrid.setAdapter(new ArrayAdapter<String>(appCompatActivity, android.R.layout.simple_list_item_1, dataGridList){ public View getView(int position, View convertView, ViewGroup parent) {
+
+                // Return the GridView current item as a View
+                View view = super.getView(position,convertView,parent);
+
+                // Convert the view as a TextView widget
+                TextView tv = (TextView) view;
+
+                // set the TextView text color (GridView item color)
+                tv.setTextColor(Color.WHITE);
+
+                // Set the layout parameters for TextView widget
+                RelativeLayout.LayoutParams lp =  new RelativeLayout.LayoutParams(
+                        RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT
+                );
+                tv.setLayoutParams(lp);
+
+                // Get the TextView LayoutParams
+                RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams)tv.getLayoutParams();
+
+                // Set the width of TextView widget (item of GridView)
+                //params.width = getPixelsFromDPs(appCompatActivity,168);
+
+                // Set the TextView layout parameters
+                tv.setLayoutParams(params);
+
+                // Display TextView text in center position
+                tv.setGravity(Gravity.CENTER);
+
+                // Set the TextView text font family and text size
+                tv.setTypeface(Typeface.SANS_SERIF, Typeface.NORMAL);
+                tv.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 12);
+
+                // Set the TextView text (GridView item text)
+                tv.setText(dataGridList.get(position));
+
+                // Set the TextView background color
+                tv.setBackgroundColor(Color.parseColor("#FFFF4F25"));
+
+                // Return the TextView widget as GridView item
+                return tv;
+            }
+        });
+    }
+
+
 
     /*Call API*/
     public void getResultsFormAPI() {
@@ -83,6 +143,8 @@ public class RegisterMapController {
     private static final String SHEET_NAME = "LoadRegisterMap";
     private static final String SHEET_RANGE ="A1:B32";
     private static final String SHEET_VALUE = SHEET_NAME +"!"+SHEET_RANGE;
+    static List<String> dataGridList = null;
+    static ArrayList<String>  dataArrayList = new ArrayList<>();
     private class sheetReceiveTask extends AsyncTask<Void, Void, List<String>> {
         Sheets mSheetsService = null;
         Exception mLastError = null;
@@ -106,7 +168,7 @@ public class RegisterMapController {
         }
 
         private List<String> getDataFormAPI() throws IOException {
-            List<String> results = new ArrayList<String>();
+            List<String> results = new ArrayList<>();
             ValueRange response = mSheetsService.spreadsheets().values()
                     .get(SHEET_ID, SHEET_VALUE)
                     .setKey(API_KEY)
@@ -116,6 +178,8 @@ public class RegisterMapController {
             if(values != null) {
                 results.add("NAME, ADDRESS");
                 for(List row : values) {
+                    dataArrayList.add(row.get(0).toString());
+                    dataArrayList.add(row.get(1).toString());
                     results.add(row.get(0) + ", " + row.get(1));
                 }
             }
@@ -134,6 +198,7 @@ public class RegisterMapController {
             if(output == null || output.size() == 0) {
                 mDataBox.setText("No Result, Check your");
             } else {
+                dataGridList = new ArrayList<>(dataArrayList);
                 output.add(0, "Data Retrieved Using the Google SpreadSheet API : ");
                 mDataBox.setText(TextUtils.join("\n", output));
                 showToast(appCompatActivity,"Complete Reload");

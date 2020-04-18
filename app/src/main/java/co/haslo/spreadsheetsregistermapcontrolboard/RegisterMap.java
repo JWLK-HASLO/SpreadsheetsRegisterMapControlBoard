@@ -16,7 +16,6 @@ import static co.haslo.spreadsheetsregistermapcontrolboard.util.InterfaceUtil.sh
 public class RegisterMap extends AppCompatActivity {
 
     RegisterMapController mRegisterMapController = new RegisterMapController(this);
-    List<List<Object>> values;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +36,7 @@ public class RegisterMap extends AppCompatActivity {
             }
             case R.id.button_reload:{
                 mRegisterMapController.getResultsFormAPI();
+                mRegisterMapController.setDataGridView();
                 return true;
             }
             case R.id.button_edit:{
