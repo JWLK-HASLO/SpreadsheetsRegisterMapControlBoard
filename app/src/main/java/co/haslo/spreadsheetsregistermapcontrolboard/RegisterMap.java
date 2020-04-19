@@ -69,5 +69,12 @@ public class RegisterMap extends AppCompatActivity {
     }
 
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        RegisterMapController.mProgress.dismiss();
+
+    }
+
 
 }

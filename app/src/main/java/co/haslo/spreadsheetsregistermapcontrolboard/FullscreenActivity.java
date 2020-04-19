@@ -17,7 +17,6 @@ public class FullscreenActivity extends AppCompatActivity {
     /**
      * Get Function Activity
      */
-    private Dlog mDlog = new Dlog(this);
     public FullscreenClickAction mFullscreenClickAction;
     public FullscreenController mFullscreenController;
     public FullscreenLogBox mFullscreenLogBox;
@@ -27,11 +26,6 @@ public class FullscreenActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fullscreen);
-
-        if(mDlog != null){
-            boolean isDebuggable = Dlog.isDebuggable();
-            Dlog.d("Debugging Status: "+isDebuggable);
-        }
 
         mDeviceHandler = new DeviceHandler(this);
         mFullscreenController = new FullscreenController(this);

@@ -58,7 +58,7 @@ import static co.haslo.spreadsheetsregistermapcontrolboard.util.InterfaceUtil.sh
 public class RegisterMapController {
 
     /*Sheet Value*/;
-    private static final String SHEET_ID = Config.sheet_id_public;
+    private static final String SHEET_ID = Config.sheet_id_private;
     private static final String SHEET_API_KEY = Config.google_api_key;
     private static final String SHEET_NAME = "LoadRegisterMap";
     private static final String SHEET_RANGE ="A1:B32";
@@ -66,7 +66,7 @@ public class RegisterMapController {
 
     /*Layout Element*/
     private AppCompatActivity appCompatActivity;
-    private CustomAnimationDialog mProgress;
+    public static CustomAnimationDialog mProgress;
     private GridView mDataGrid;
     public static TextView mDataBox;
 
@@ -172,7 +172,7 @@ public class RegisterMapController {
         sheetReceiveTask() {
             HttpTransport transport = AndroidHttp.newCompatibleTransport();
             JsonFactory jsonFactory = JacksonFactory.getDefaultInstance();
-            mSheetsService =  new Sheets.Builder(transport, jsonFactory, null)
+            mSheetsService =  new Sheets.Builder(transport, jsonFactory, InitSplash.globalCredential)
                     .setApplicationName("SYSTEM_REGISTER_MAP")
                     .build();
         }
@@ -191,7 +191,7 @@ public class RegisterMapController {
             List<String> results = new ArrayList<>();
             ValueRange response = mSheetsService.spreadsheets().values()
                     .get(SHEET_ID, SHEET_VALUE)
-                    .setKey(SHEET_API_KEY)
+                    //.setKey(SHEET_API_KEY)
                     .execute();
 
             List<List<Object>> values = response.getValues();
@@ -231,6 +231,7 @@ public class RegisterMapController {
 
         }
     }
+
 
 
 

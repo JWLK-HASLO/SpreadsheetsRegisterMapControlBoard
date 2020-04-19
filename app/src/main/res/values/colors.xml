@@ -9,7 +9,8 @@
     <color name="colorDarkTP">#00000000</color>
 
 
-    <color name="colorRealDark">#222222</color>
+    <color name="colorRealDark">#101010</color>
+    <color name="colorSubDark">#222222</color>
     <color name="colorMainDark">#333333</color>
     <color name="colorSemiDark">#434343</color>
     <color name="colorWhiteDark">#545454</color>
