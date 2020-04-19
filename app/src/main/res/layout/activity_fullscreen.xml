@@ -1,52 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimaryDark"
+    android:background="@color/colorDark"
     tools:context=".FullscreenActivity">
 
     <!-- The primary full-screen view. This can be replaced with whatever view
          is needed to present your content, e.g. VideoView, SurfaceView,
          TextureView, etc. -->
     <LinearLayout
-        android:id="@+id/fullscreen_content"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <LinearLayout
+            android:id="@+id/fullscreen_content"
             android:orientation="vertical"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1">
+            android:layout_weight="2">
 
-            <TextView
-                android:id="@+id/log_box_selected"
-                android:scrollbars = "vertical"
+            <ImageView
+                android:id="@+id/data_image"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                android:keepScreenOn="true"
-                android:text="Selected Data View"
-                android:textColor="@color/colorStroke"
-                android:textSize="9sp"
-                android:textStyle="bold" />
+                android:keepScreenOn="true" />
 
         </LinearLayout>
 
         <LinearLayout
             android:orientation="vertical"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="2">
+            android:layout_weight="1">
 
             <TextView
                 android:id="@+id/log_box_text"
                 android:scrollbars = "vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="center_vertical"
+                android:gravity="bottom"
                 android:keepScreenOn="true"
                 android:text="Log Box"
                 android:textColor="@color/colorStroke"
@@ -67,32 +62,129 @@
 
         <LinearLayout
             android:id="@+id/fullscreen_side"
-            android:orientation="horizontal"
+            android:orientation="vertical"
             style="?metaButtonBarStyle"
-            android:layout_width="150dp"
+            android:layout_width="170dp"
             android:layout_height="wrap_content"
             android:layout_gravity="right|bottom"
             android:background="@color/colorDarkTP"
             android:layout_marginBottom="80dp"
             tools:ignore="UselessParent">
 
-            <Button
-                android:id="@+id/side_button_set"
-                style="?metaButtonBarButtonStyle"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="SET" />
+            <LinearLayout
+                android:orientation="horizontal"
+                style="?metaButtonBarStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-            <Button
-                android:id="@+id/side_button_start"
-                style="?metaButtonBarButtonStyle"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="START" />
+                <Button
+                    android:id="@+id/side_button_clear"
+                    style="?metaButtonBarButtonStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="CLEAR LOG" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                style="?metaButtonBarStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp">
+
+                <Button
+                    android:id="@+id/side_button_top"
+                    style="?metaButtonBarButtonStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="TOP" />
+
+                <Button
+                    android:id="@+id/side_button_bottom"
+                    style="?metaButtonBarButtonStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="BTM" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                style="?metaButtonBarStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp">
+
+                <Button
+                    android:id="@+id/side_button_resetCounter"
+                    style="?metaButtonBarButtonStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="C-SET" />
+
+                <Button
+                    android:id="@+id/side_button_startCounter"
+                    style="?metaButtonBarButtonStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="C-START" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                style="?metaButtonBarStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp">
+
+                <Button
+                    android:id="@+id/side_button_set"
+                    style="?metaButtonBarButtonStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="SET" />
+
+                <Button
+                    android:id="@+id/side_button_reset"
+                    style="?metaButtonBarButtonStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="RESET" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                style="?metaButtonBarStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <Button
+                    android:id="@+id/side_button_start"
+                    style="?metaButtonBarButtonStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="START" />
+
+            </LinearLayout>
+
 
         </LinearLayout>
+
+
 
         <LinearLayout
             android:id="@+id/fullscreen_content_controls"
@@ -101,7 +193,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|center_horizontal"
-            android:background="@color/colorPrimary"
+            android:background="@color/colorPrimaryDark"
             tools:ignore="UselessParent">
 
             <Button

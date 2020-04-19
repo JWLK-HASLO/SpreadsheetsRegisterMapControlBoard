@@ -19,6 +19,11 @@ android {
     }
 }
 
+repositories {
+    mavenCentral()
+    google()
+}
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'androidx.appcompat:appcompat:1.1.0'
@@ -27,5 +32,9 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     implementation 'com.google.apis:google-api-services-sheets:v4-rev516-1.23.0'
+    implementation 'pub.devrel:easypermissions:3.0.0'
     implementation 'com.google.api-client:google-api-client-android:1.23.0'
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
+    implementation 'com.google.android.gms:play-services-auth:18.0.0'
 }

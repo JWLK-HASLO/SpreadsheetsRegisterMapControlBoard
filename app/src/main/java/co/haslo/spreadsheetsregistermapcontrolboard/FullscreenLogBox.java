@@ -16,13 +16,12 @@ import co.haslo.spreadsheetsregistermapcontrolboard.util.InterfaceUtil;
 
 public class FullscreenLogBox {
 
+    public static int lengthSaver = 0;
     private StringBuilder log = null;
-    private int lengthSaver = 0;
     private SimpleDateFormat formatPrint = new SimpleDateFormat( "yyyy.MM.dd HH:mm:ss");
 
     /*Layout Element*/
     private TextView logBoxText;
-    private TextView logBoxSelected;
 
     /*Get Parent Element*/
     private AppCompatActivity appCompatActivity;
@@ -35,14 +34,11 @@ public class FullscreenLogBox {
         Dlog.d("Ready");
         logBoxText =  appCompatActivity.findViewById(R.id.log_box_text);
         logBoxText.setMovementMethod(new ScrollingMovementMethod());
-        logBoxSelected =  appCompatActivity.findViewById(R.id.log_box_selected);
-        logBoxSelected.setMovementMethod(new ScrollingMovementMethod());
         mUSBRealTimeController.start();
     }
 
     public void setLogcat(){
         logBoxText.setText(getLogcat());
-        logBoxSelected.setText(getLogcat());
     }
 
     public String getLogcat() {
@@ -66,45 +62,34 @@ public class FullscreenLogBox {
         return log.toString();
     }
 
-    public void clearLogcatLog() {
+    public static void clearLogcat() {
         try {
             @SuppressWarnings("unused")
             Process process = Runtime.getRuntime().exec("logcat -b all -c");
-            logBoxText.append("Please Click Load");
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public String getSelectedLogcat() {
-        String retunrString = null;
-
-        return retunrString;
-    }
 
     private Thread mUSBRealTimeController = new Thread(){
         @Override
         public void run() {
             while (!isInterrupted()) {
 
-                Date currentTime = new Date();
-                String printString = formatPrint.format(currentTime);
-                Dlog.i(printString); // Timer
+                //Date currentTime = new Date();
+                //String printString = formatPrint.format(currentTime);
+                //Dlog.i(printString); // Timer
 
-                try
-                {
-                    Thread.sleep(1000);
+                try {
+                    Thread.sleep(300);
                     if(getLogcat().length() > lengthSaver){
                         lengthSaver = getLogcat().length();
                         setLogcat();
                         InterfaceUtil.scrollBottom(logBoxText);
-                        InterfaceUtil.scrollBottom(logBoxSelected);
                     }
-                }
-                catch (InterruptedException e) {
-                    Dlog.e("mUSBRealTimeController Thread Error : " + e );
-                }
-                catch (Exception e) {
+
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
 

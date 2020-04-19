@@ -9,8 +9,8 @@
         android:icon="@drawable/ic_cloud_download_white_32dp"
         app:showAsAction="always" />
 
-    <item android:id="@+id/button_save"
-        android:title="SAVE"
+    <item android:id="@+id/button_edit"
+        android:title="Edit"
         app:showAsAction="never"/>
 
     <item android:id="@+id/button_setting"
