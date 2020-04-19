@@ -1,6 +1,11 @@
 package co.haslo.spreadsheetsregistermapcontrolboard;
 
+import android.Manifest;
+import android.accounts.AccountManager;
+import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.net.ConnectivityManager;
@@ -17,34 +22,57 @@ import android.widget.ArrayAdapter;
 import android.widget.GridView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.RelativeLayout.LayoutParams;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.api.client.extensions.android.http.AndroidHttp;
+import com.google.api.client.googleapis.extensions.android.gms.auth.GoogleAccountCredential;
+import com.google.api.client.googleapis.extensions.android.gms.auth.GooglePlayServicesAvailabilityIOException;
+import com.google.api.client.googleapis.extensions.android.gms.auth.UserRecoverableAuthIOException;
 import com.google.api.client.http.HttpTransport;
 import com.google.api.client.json.JsonFactory;
 import com.google.api.client.json.jackson2.JacksonFactory;
+import com.google.api.client.util.ExponentialBackOff;
 import com.google.api.services.sheets.v4.Sheets;
 import com.google.api.services.sheets.v4.SheetsScopes;
 import com.google.api.services.sheets.v4.model.ValueRange;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
+import co.haslo.spreadsheetsregistermapcontrolboard.auth.Config;
 import co.haslo.spreadsheetsregistermapcontrolboard.util.CustomAnimationDialog;
 import co.haslo.spreadsheetsregistermapcontrolboard.util.Dlog;
+import pub.devrel.easypermissions.AfterPermissionGranted;
+import pub.devrel.easypermissions.EasyPermissions;
 
+import static android.app.Activity.RESULT_OK;
 import static co.haslo.spreadsheetsregistermapcontrolboard.util.InterfaceUtil.showToast;
 
 public class RegisterMapController {
 
+    /*Sheet Value*/;
+    private static final String SHEET_ID = Config.sheet_id_public;
+    private static final String SHEET_API_KEY = Config.google_api_key;
+    private static final String SHEET_NAME = "LoadRegisterMap";
+    private static final String SHEET_RANGE ="A1:B32";
+    private static final String SHEET_VALUE = SHEET_NAME +"!"+SHEET_RANGE;
+
+    /*Layout Element*/
     private AppCompatActivity appCompatActivity;
     private CustomAnimationDialog mProgress;
     private GridView mDataGrid;
-    private TextView mDataBox;
+    public static TextView mDataBox;
+
+    /*Grid Value*/
+    static List<String> dataGridList = null;
+    static ArrayList<String>  dataArrayList = new ArrayList<>();
 
     RegisterMapController(AppCompatActivity appCompatActivity) {
         this.appCompatActivity = appCompatActivity;
@@ -55,6 +83,7 @@ public class RegisterMapController {
         setActionBarControl();
         setLayoutElement();
     }
+
 
     private void setActionBarControl() {
         ActionBar actionBar = appCompatActivity.getSupportActionBar();
@@ -116,9 +145,7 @@ public class RegisterMapController {
         });
     }
 
-
-
-    /*Call API*/
+    /*GET API Permission*/
     public void getResultsFormAPI() {
         if(!isDeviceOnline()){
             mDataBox.setText("Check your Network Environment State");
@@ -128,6 +155,7 @@ public class RegisterMapController {
         }
     }
 
+
     /*Check Network State*/
     private boolean isDeviceOnline() {
         ConnectivityManager connectivityManager = (ConnectivityManager) appCompatActivity.getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -136,15 +164,7 @@ public class RegisterMapController {
         return (networkConnection != null);
     }
 
-    /*get Sheet Data*/
-    private static final String SHEET_ID = Config.spreadsheet_id;
-    private static final String API_KEY = Config.google_api_key;
-    private static final String[] SCOPES = {SheetsScopes.SPREADSHEETS_READONLY};
-    private static final String SHEET_NAME = "LoadRegisterMap";
-    private static final String SHEET_RANGE ="A1:B32";
-    private static final String SHEET_VALUE = SHEET_NAME +"!"+SHEET_RANGE;
-    static List<String> dataGridList = null;
-    static ArrayList<String>  dataArrayList = new ArrayList<>();
+        /*get Sheet Data*/
     private class sheetReceiveTask extends AsyncTask<Void, Void, List<String>> {
         Sheets mSheetsService = null;
         Exception mLastError = null;
@@ -171,7 +191,7 @@ public class RegisterMapController {
             List<String> results = new ArrayList<>();
             ValueRange response = mSheetsService.spreadsheets().values()
                     .get(SHEET_ID, SHEET_VALUE)
-                    .setKey(API_KEY)
+                    .setKey(SHEET_API_KEY)
                     .execute();
 
             List<List<Object>> values = response.getValues();
@@ -207,9 +227,8 @@ public class RegisterMapController {
         @Override
         protected void onCancelled() {
             mProgress.hide();
-            if(mLastError != null) {
-                Dlog.e("API ERROR: "+ mLastError);
-            }
+            Dlog.e("API ERROR: "+ mLastError);
+
         }
     }
 
