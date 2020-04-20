@@ -10,18 +10,17 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_launcher_mits"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         tools:ignore="GoogleAppIndexingWarning">
 
         <activity
-            android:name=".FullscreenActivity"
+            android:name=".InitSplash"
             android:screenOrientation="landscape"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
-            android:theme="@style/FullscreenTheme">
+            android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -29,6 +28,10 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".FullscreenActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/FullscreenTheme"/>
         <activity
             android:name=".RegisterMap"
             android:screenOrientation="landscape"

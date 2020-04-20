@@ -4,18 +4,30 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
+    <item android:id="@+id/button_download"
+        android:title="Download"
+        android:icon="@drawable/ic_cloud_download_white_32dp"
+        app:showAsAction="always|withText" />
+
+    <item android:id="@+id/button_upload"
+        android:title="Upload"
+        android:icon="@drawable/ic_cloud_upload_white_32dp"
+        app:showAsAction="always|withText" />
+
     <item android:id="@+id/button_reload"
         android:title="Reload"
-        android:icon="@drawable/ic_cloud_download_white_32dp"
-        app:showAsAction="always" />
+        android:icon="@drawable/ic_refresh_white_32dp"
+        app:showAsAction="always|withText" />
 
     <item android:id="@+id/button_edit"
         android:title="Edit"
-        app:showAsAction="never"/>
+        android:icon="@drawable/ic_edit_white_32dp"
+        app:showAsAction="never|withText"/>
 
     <item android:id="@+id/button_setting"
         android:title="Setting"
-        app:showAsAction="never" />
+        android:icon="@drawable/ic_settings_white_32dp"
+        app:showAsAction="never|withText" />
 
 
 </menu>

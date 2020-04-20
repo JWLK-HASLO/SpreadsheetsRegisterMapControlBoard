@@ -22,6 +22,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.api.client.extensions.android.http.AndroidHttp;
@@ -30,10 +32,12 @@ import com.google.api.client.googleapis.extensions.android.gms.auth.GooglePlaySe
 import com.google.api.client.googleapis.extensions.android.gms.auth.UserRecoverableAuthIOException;
 import com.google.api.client.http.HttpTransport;
 import com.google.api.client.json.JsonFactory;
+import com.google.api.client.json.JsonObjectParser;
 import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.client.util.ExponentialBackOff;
 import com.google.api.services.sheets.v4.Sheets;
 import com.google.api.services.sheets.v4.SheetsScopes;
+import com.google.api.services.sheets.v4.model.Spreadsheet;
 import com.google.api.services.sheets.v4.model.UpdateValuesResponse;
 import com.google.api.services.sheets.v4.model.ValueRange;
 import com.google.common.collect.ObjectArrays;
@@ -266,6 +270,7 @@ public class SpreadSheetLoad extends AppCompatActivity implements EasyPermission
     }
 
     /*get Sheet Data*/
+    static ArrayList<String> dataArrayList = new ArrayList<>();
     private static final String SHEET_GET_NAME = "LoadRegisterMap";
     private static final String SHEET_GET_RANGE ="A1:B10";
     private static final String SHEET_GET_VALUE = SHEET_GET_NAME +"!"+SHEET_GET_RANGE;
@@ -301,6 +306,8 @@ public class SpreadSheetLoad extends AppCompatActivity implements EasyPermission
             if(values != null) {
                 results.add("GET DATA");
                 for(List row : values) {
+                    dataArrayList.add(row.get(0).toString());
+                    dataArrayList.add(row.get(1).toString());
                     results.add(row.get(0).toString() + "," + row.get(1).toString());
                 }
             }
@@ -376,7 +383,15 @@ public class SpreadSheetLoad extends AppCompatActivity implements EasyPermission
 
 
             List<List<Object>> values = response.getValues();
-            ValueRange body = new ValueRange().setValues(values);
+
+            ObjectMapper mapper = new ObjectMapper();
+            String contentsString = "[[1, 2], [10, 23], [2, 2]]";
+            List<List<Object>> convertWebSiteModels = mapper.readValue(contentsString, new TypeReference<List<List<Object>>>(){});
+
+
+            Dlog.d("convertWebSiteModels Value : "+ convertWebSiteModels);
+
+            ValueRange body = new ValueRange().setValues(convertWebSiteModels);
             UpdateValuesResponse result = mSheetsService
                     .spreadsheets()
                     .values()
@@ -427,6 +442,11 @@ public class SpreadSheetLoad extends AppCompatActivity implements EasyPermission
     }
 
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        mProgress.dismiss();
+    }
 
 
 

@@ -9,18 +9,20 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import co.haslo.spreadsheetsregistermapcontrolboard.R;
 
 public class CustomAnimationDialog extends ProgressDialog {
 
-    private Context context;
+    private AppCompatActivity appCompatActivity;
 
-    public CustomAnimationDialog(Context context) {
-        super(context);
+    public CustomAnimationDialog(AppCompatActivity appCompatActivity) {
+        super(appCompatActivity);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
         setCanceledOnTouchOutside(false);
-        this.context = context;
+        this.appCompatActivity = appCompatActivity;
     }
 
     @Override
@@ -28,7 +30,7 @@ public class CustomAnimationDialog extends ProgressDialog {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.custom_dialog);
         ImageView imageView = (ImageView) findViewById(R.id.img_android);
-        Animation anim = AnimationUtils.loadAnimation(context, R.anim.loading);
+        Animation anim = AnimationUtils.loadAnimation(appCompatActivity, R.anim.loading);
         imageView.setAnimation(anim);
     }
 
@@ -41,4 +43,5 @@ public class CustomAnimationDialog extends ProgressDialog {
     public void dismiss() {
         super.dismiss();
     }
+
 }

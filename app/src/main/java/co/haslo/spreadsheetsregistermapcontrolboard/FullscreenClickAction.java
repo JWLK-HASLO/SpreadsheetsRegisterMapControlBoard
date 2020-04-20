@@ -13,12 +13,20 @@ import co.haslo.spreadsheetsregistermapcontrolboard.util.CustomAnimationDialog;
 import co.haslo.spreadsheetsregistermapcontrolboard.util.Dlog;
 import co.haslo.spreadsheetsregistermapcontrolboard.util.InterfaceUtil;
 
+import static co.haslo.spreadsheetsregistermapcontrolboard.SpreadSheetController.dataList;
+import static co.haslo.spreadsheetsregistermapcontrolboard.usbDeviceManager.DeviceDataTransfer.hexaArray;
+import static co.haslo.spreadsheetsregistermapcontrolboard.util.ConvertSheetType.convertDownloadString;
+import static co.haslo.spreadsheetsregistermapcontrolboard.util.ConvertSheetType.convertUploadString;
 import static co.haslo.spreadsheetsregistermapcontrolboard.util.InterfaceUtil.showToast;
 
 public class FullscreenClickAction {
 
     private AppCompatActivity appCompatActivity;
     DeviceHandler mDeviceHandler ;
+    SpreadSheetController mSpreadSheetController;
+
+    private boolean setTrigger = false;
+    private boolean startTrigger = false;
 
     FullscreenClickAction(AppCompatActivity appCompatActivity, DeviceHandler deviceHandler) {
         this.appCompatActivity = appCompatActivity;
@@ -28,6 +36,9 @@ public class FullscreenClickAction {
     void initialize() {
         Dlog.d("Ready");
         setButton();
+        mSpreadSheetController = new SpreadSheetController(appCompatActivity);
+        mSpreadSheetController.initialize();
+
     }
 
     /* Button Bundle */
@@ -41,6 +52,7 @@ public class FullscreenClickAction {
         loadMenuButtonSet();
         loadMenuButtonReset();
         loadMenuButtonStart();
+        loadMenuButtonUpload();
     }
 
     /* Button Function */
@@ -115,33 +127,64 @@ public class FullscreenClickAction {
         });
     }
 
-    private void loadMenuButtonSet() {
-        Button mButton = (Button) appCompatActivity.findViewById(R.id.side_button_set);
-        mButton.setOnClickListener(new Button.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showToast(appCompatActivity,"SET Button Click");
-            }
-        });
-    }
-
     private void loadMenuButtonReset() {
         Button mButton = (Button) appCompatActivity.findViewById(R.id.side_button_reset);
         mButton.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View view) {
                 showToast(appCompatActivity,"RESET Button Click");
+                mDeviceHandler.resetCounter();
                 mDeviceHandler.resetData();
             }
         });
     }
+
+    private void loadMenuButtonSet() {
+        Button mButton = (Button) appCompatActivity.findViewById(R.id.side_button_set);
+        mButton.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showToast(appCompatActivity,"SET Button Click");
+                mSpreadSheetController.getSheetData("A1:B4095");
+                mSpreadSheetController.getResultsFormAPI();
+                setTrigger = true;
+            }
+        });
+    }
+
 
     private void loadMenuButtonStart() {
         Button mButton = (Button) appCompatActivity.findViewById(R.id.side_button_start);
         mButton.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showToast(appCompatActivity,"START Button Click");
+                if(setTrigger){
+                    showToast(appCompatActivity,"START Button Click");
+                    setTrigger = false;
+                    startTrigger = true;
+                    mDeviceHandler.sendData(convertDownloadString(dataList));
+                } else {
+                    showToast(appCompatActivity,"Please SET Data");
+                }
+
+            }
+        });
+    }
+
+    private void loadMenuButtonUpload() {
+        Button mButton = (Button) appCompatActivity.findViewById(R.id.side_button_upload);
+        mButton.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(startTrigger && hexaArray.length != 0){
+                    showToast(appCompatActivity,"Upload Button Click");
+                    startTrigger = false;
+                    mSpreadSheetController.setSheetData("C1:C8200", convertUploadString(hexaArray));
+                    mSpreadSheetController.setDataArraysFormAPI();
+                } else {
+                    showToast(appCompatActivity,"Please SET Data");
+                }
+
             }
         });
     }

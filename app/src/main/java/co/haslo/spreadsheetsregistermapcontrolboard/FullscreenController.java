@@ -21,7 +21,7 @@ public class FullscreenController {
 
     void initialize() {
         Dlog.d("Ready");
-        delayedHide(500);
+        //delayedHide(500);
         setActionBarControl();
         setScreenControl();
     }

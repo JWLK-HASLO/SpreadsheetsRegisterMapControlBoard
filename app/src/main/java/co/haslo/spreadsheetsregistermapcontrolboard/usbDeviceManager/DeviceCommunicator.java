@@ -13,7 +13,7 @@ import java.util.Arrays;
 
 import co.haslo.spreadsheetsregistermapcontrolboard.util.Dlog;
 
-import static co.haslo.spreadsheetsregistermapcontrolboard.util.ConvertData.hexStringArrayToByte8bit2HexArray;
+import static co.haslo.spreadsheetsregistermapcontrolboard.util.ConvertDataType.hexStringArrayToByte8bit2HexArray;
 
 public class DeviceCommunicator {
 
