@@ -7,6 +7,8 @@ import android.os.Bundle;
 import co.haslo.spreadsheetsregistermapcontrolboard.usbDeviceManager.DeviceHandler;
 import co.haslo.spreadsheetsregistermapcontrolboard.util.Dlog;
 
+import static co.haslo.spreadsheetsregistermapcontrolboard.RegisterMapController.mProgress;
+
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
  * status bar and navigation/system bar) with user interaction.

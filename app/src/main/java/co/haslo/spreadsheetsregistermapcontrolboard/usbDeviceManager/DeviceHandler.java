@@ -102,8 +102,7 @@ public class DeviceHandler extends Handler {
         if(mDeviceCommunicator != null) {
             DeviceRegisterSetting.writeBulkHexData(mDeviceCommunicator, hexStringArray);
         } else {
-            Toast warningMessage = Toast.makeText(appCompatActivity.getApplicationContext(),"Please Connect USB Device: "+mDeviceCommunicator, Toast.LENGTH_SHORT);
-            warningMessage.show();
+            deviceConnectionError();
         }
 
     }
@@ -113,8 +112,7 @@ public class DeviceHandler extends Handler {
         if(mDeviceCommunicator != null) {
             mDeviceCommunicator.DataTransferReset();
         } else {
-            Toast warningMessage = Toast.makeText(appCompatActivity.getApplicationContext(),"Please Connect USB Device: "+mDeviceCommunicator, Toast.LENGTH_SHORT);
-            warningMessage.show();
+            deviceConnectionError();
         }
     }
 
@@ -123,8 +121,7 @@ public class DeviceHandler extends Handler {
         if(mDeviceCommunicator != null) {
             DeviceRegisterSetting.counterTest(mDeviceCommunicator);
         } else {
-            Toast warningMessage = Toast.makeText(appCompatActivity.getApplicationContext(),"Please Connect USB Device: "+mDeviceCommunicator, Toast.LENGTH_SHORT);
-            warningMessage.show();
+            deviceConnectionError();
         }
     }
 
@@ -133,9 +130,13 @@ public class DeviceHandler extends Handler {
         if(mDeviceCommunicator != null) {
             DeviceRegisterSetting.counterReset(mDeviceCommunicator);
         } else {
-            Toast warningMessage = Toast.makeText(appCompatActivity.getApplicationContext(),"Please Connect USB Device: "+mDeviceCommunicator, Toast.LENGTH_SHORT);
-            warningMessage.show();
+            deviceConnectionError();
         }
+    }
+
+    public void deviceConnectionError() {
+        Toast warningMessage = Toast.makeText(appCompatActivity.getApplicationContext(),"Please Connect USB Device: "+mDeviceCommunicator, Toast.LENGTH_SHORT);
+        warningMessage.show();
     }
 
 

@@ -1,9 +1,13 @@
 package co.haslo.spreadsheetsregistermapcontrolboard.util;
 
 import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.Network;
 import android.os.Handler;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class InterfaceUtil {
 
@@ -39,6 +43,20 @@ public class InterfaceUtil {
         }, 500);
     }
 
+
+    /*Device Status*/
+    public static boolean isDeviceOnline(AppCompatActivity appCompatActivity) {
+        ConnectivityManager connectivityManager = (ConnectivityManager) appCompatActivity.getSystemService(Context.CONNECTIVITY_SERVICE);
+        assert connectivityManager != null;
+        Network networkConnection = connectivityManager.getActiveNetwork();
+        return (networkConnection != null);
+    }
+
+
+    public static void networkError(AppCompatActivity appCompatActivity){
+        showToast(appCompatActivity,"Check your Network Environment State");
+        Dlog.d("Check Network State");
+    }
 
 
 }

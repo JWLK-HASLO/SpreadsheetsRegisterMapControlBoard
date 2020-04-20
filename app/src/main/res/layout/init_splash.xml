@@ -3,7 +3,8 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorRealDark">
+    android:background="@color/colorRealDark"
+    android:keepScreenOn="true">
 
     <LinearLayout
         android:layout_weight="1"

@@ -1,7 +1,7 @@
 package co.haslo.spreadsheetsregistermapcontrolboard.usbDeviceManager;
 
 
-import co.haslo.spreadsheetsregistermapcontrolboard.util.ConvertData;
+import co.haslo.spreadsheetsregistermapcontrolboard.util.ConvertDataType;
 import co.haslo.spreadsheetsregistermapcontrolboard.util.Dlog;
 
 public class DeviceDataTransfer {
@@ -17,6 +17,8 @@ public class DeviceDataTransfer {
     private DeviceCommunicator mDeviceCommunicator;
     private final Object mDataTransferBlock;
 
+    public static String[] hexaArray = new String[SEQUENCE_SIZE*2];
+
 
     private class DeviceDataTransferThread extends Thread {
 
@@ -28,7 +30,8 @@ public class DeviceDataTransfer {
             final int defaultReadSize = SEQUENCE_SIZE * READ_SCANLINE_NUMBER;
             final byte[] readBuffer = new byte[defaultReadSize];
             int readSize;
-
+            String convertString;
+            //String[] convertHexaArray = new String[SEQUENCE_SIZE];
             while (!isInterrupted()) {
 
                 try
@@ -51,13 +54,15 @@ public class DeviceDataTransfer {
                 }
 
 
-                for(int i = 0; i < defaultReadSize; i+=4) {
+                for(int i = 0, counter = 0; i < defaultReadSize; i+=4, counter++) {
                     byte Data03 = readBuffer[i + 3];
                     byte Data02 = readBuffer[i + 2];
                     byte Data01 = readBuffer[i + 1];
                     byte Data00 = readBuffer[i + 0];
                     byte[] DataArray = {Data03,Data02,Data01,Data00};
-                    Dlog.i("RX["+ i +"] - "+ ConvertData.byteArrayToHexString(DataArray));
+                    convertString = ConvertDataType.byteArrayToHexString(DataArray);
+                    //Dlog.i("RX["+ i +"] - "+ convertString);
+                    hexaArray[counter] = convertString;
                 }
 
 

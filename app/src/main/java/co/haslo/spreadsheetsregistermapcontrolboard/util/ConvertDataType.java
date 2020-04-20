@@ -2,7 +2,7 @@ package co.haslo.spreadsheetsregistermapcontrolboard.util;
 
 import java.util.Arrays;
 
-public class ConvertData {
+public class ConvertDataType {
 
     // Single(4bit) = 1 Hex Number / Range of Hex Value : 0 ~ F / Range of Decimal Value : 0 ~ 15( 0 ~ 2^4-1 )
     // Byte(8bit) = 2 Hex Numbers  / Range of Hex Value : 0 ~ FF / Range of Decimal Value : 0 ~ 255( 0 ~ 2^8-1 )

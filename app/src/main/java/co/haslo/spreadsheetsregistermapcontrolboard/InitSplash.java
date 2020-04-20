@@ -27,6 +27,7 @@ import co.haslo.spreadsheetsregistermapcontrolboard.util.Dlog;
 import pub.devrel.easypermissions.AfterPermissionGranted;
 import pub.devrel.easypermissions.EasyPermissions;
 
+import static co.haslo.spreadsheetsregistermapcontrolboard.util.InterfaceUtil.isDeviceOnline;
 import static co.haslo.spreadsheetsregistermapcontrolboard.util.InterfaceUtil.showToast;
 
 public class InitSplash extends AppCompatActivity implements EasyPermissions.PermissionCallbacks {
@@ -79,7 +80,7 @@ public class InitSplash extends AppCompatActivity implements EasyPermissions.Per
             acquireGooglePlayServices();
         } else if(globalCredential.getSelectedAccountName() == null){
             chooseAccount();
-        } else if(!isDeviceOnline()){
+        } else if(!isDeviceOnline(this)){
             showToast(this,"Check your Network Environment State");
 
         } else {
@@ -177,13 +178,5 @@ public class InitSplash extends AppCompatActivity implements EasyPermissions.Per
     @Override
     public void onPermissionsDenied(int requestCode, @NonNull List<String> perms) {
 
-    }
-
-    /*Device Status*/
-    private boolean isDeviceOnline() {
-        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        assert connectivityManager != null;
-        Network networkConnection = connectivityManager.getActiveNetwork();
-        return (networkConnection != null);
     }
 }

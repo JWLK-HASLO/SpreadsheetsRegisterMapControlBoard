@@ -62,20 +62,21 @@
 
         <LinearLayout
             android:id="@+id/fullscreen_side"
-            android:orientation="vertical"
+            android:orientation="horizontal"
             style="?metaButtonBarStyle"
-            android:layout_width="170dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right|bottom"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_gravity="bottom"
+            android:gravity="center"
             android:background="@color/colorDarkTP"
-            android:layout_marginBottom="80dp"
+            android:layout_marginBottom="50dp"
             tools:ignore="UselessParent">
 
             <LinearLayout
                 android:orientation="horizontal"
                 style="?metaButtonBarStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
 
                 <Button
                     android:id="@+id/side_button_clear"
@@ -91,9 +92,8 @@
             <LinearLayout
                 android:orientation="horizontal"
                 style="?metaButtonBarStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp">
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
 
                 <Button
                     android:id="@+id/side_button_top"
@@ -117,22 +117,21 @@
             <LinearLayout
                 android:orientation="horizontal"
                 style="?metaButtonBarStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp">
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
 
                 <Button
                     android:id="@+id/side_button_resetCounter"
                     style="?metaButtonBarButtonStyle"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="C-SET" />
+                    android:text="C-RSET" />
 
                 <Button
                     android:id="@+id/side_button_startCounter"
                     style="?metaButtonBarButtonStyle"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:text="C-START" />
@@ -142,17 +141,8 @@
             <LinearLayout
                 android:orientation="horizontal"
                 style="?metaButtonBarStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp">
-
-                <Button
-                    android:id="@+id/side_button_set"
-                    style="?metaButtonBarButtonStyle"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:text="SET" />
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
 
                 <Button
                     android:id="@+id/side_button_reset"
@@ -162,14 +152,30 @@
                     android:layout_weight="1"
                     android:text="RESET" />
 
+
             </LinearLayout>
 
             <LinearLayout
                 android:orientation="horizontal"
                 style="?metaButtonBarStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
 
+                <Button
+                    android:id="@+id/side_button_set"
+                    style="?metaButtonBarButtonStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="SET" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                style="?metaButtonBarStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
 
                 <Button
                     android:id="@+id/side_button_start"
@@ -178,6 +184,22 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:text="START" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                style="?metaButtonBarStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+
+                <Button
+                    android:id="@+id/side_button_upload"
+                    style="?metaButtonBarButtonStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="UPLOAD" />
 
             </LinearLayout>
 

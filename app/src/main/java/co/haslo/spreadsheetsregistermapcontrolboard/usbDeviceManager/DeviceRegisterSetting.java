@@ -3,8 +3,8 @@ package co.haslo.spreadsheetsregistermapcontrolboard.usbDeviceManager;
 
 import co.haslo.spreadsheetsregistermapcontrolboard.util.Dlog;
 
-import static co.haslo.spreadsheetsregistermapcontrolboard.util.ConvertData.hexStringToShort16bit4HexArray;
-import static co.haslo.spreadsheetsregistermapcontrolboard.util.ConvertData.hexStringArrayToInt32bit8HexArray;
+import static co.haslo.spreadsheetsregistermapcontrolboard.util.ConvertDataType.hexStringToShort16bit4HexArray;
+import static co.haslo.spreadsheetsregistermapcontrolboard.util.ConvertDataType.hexStringArrayToInt32bit8HexArray;
 
 
 public class DeviceRegisterSetting {
