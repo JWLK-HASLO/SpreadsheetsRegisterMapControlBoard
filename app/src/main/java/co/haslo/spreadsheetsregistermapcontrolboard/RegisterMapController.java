@@ -57,13 +57,6 @@ import static co.haslo.spreadsheetsregistermapcontrolboard.util.InterfaceUtil.sh
 
 public class RegisterMapController {
 
-    /*Sheet Value*/;
-    private static final String SHEET_ID = Config.sheet_id_private;
-    private static final String SHEET_API_KEY = Config.google_api_key;
-    private static final String SHEET_NAME = "LoadRegisterMap";
-    private static final String SHEET_RANGE ="A1:B32";
-    private static final String SHEET_VALUE = SHEET_NAME +"!"+SHEET_RANGE;
-
     /*Layout Element*/
     private AppCompatActivity appCompatActivity;
     public static CustomAnimationDialog mProgress;
