@@ -42,7 +42,7 @@ public class DeviceRegisterSetting {
 
     public static void counterTest(DeviceCommunicator device)
     {
-        String[] sendStringArray =  {"98000000","980100FF", "98000003"};
+        String[] sendStringArray =  {"98000000","980103FF", "9807001F","98080FFF","98090000"};
         int[] sendIntArray = hexStringArrayToInt32bit8HexArray(sendStringArray);
         for(int ints : sendIntArray){
             Dlog.d(String.format("0x%04X", ints));

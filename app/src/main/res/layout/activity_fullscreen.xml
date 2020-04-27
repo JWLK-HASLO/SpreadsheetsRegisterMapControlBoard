@@ -123,15 +123,15 @@
                 <Button
                     android:id="@+id/side_button_resetCounter"
                     style="?metaButtonBarButtonStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
                     android:layout_weight="1"
                     android:text="C-RSET" />
 
                 <Button
                     android:id="@+id/side_button_startCounter"
                     style="?metaButtonBarButtonStyle"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:text="C-START" />
@@ -148,7 +148,7 @@
                     android:id="@+id/side_button_reset"
                     style="?metaButtonBarButtonStyle"
                     android:layout_width="0dp"
-                    android:layout_height="match_parent"
+                    android:layout_height="0dp"
                     android:layout_weight="1"
                     android:text="RESET" />
 
