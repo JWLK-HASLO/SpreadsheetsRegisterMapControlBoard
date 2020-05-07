@@ -168,7 +168,18 @@ public class SpreadSheetController {
         protected void onCancelled() {
             mProgress.hide();
             Dlog.e("API ERROR: "+ mLastError);
+            if(mLastError != null) {
+                Dlog.e("API ERROR: "+ mLastError);
+                if(mLastError instanceof GooglePlayServicesAvailabilityIOException) {
+                    InitSplash.showGooglePlayServicesAvailabilityErrorDialog(((GooglePlayServicesAvailabilityIOException) mLastError).getConnectionStatusCode(), appCompatActivity);
+                } else if(mLastError instanceof UserRecoverableAuthIOException) {
+                    appCompatActivity.startActivityForResult(((UserRecoverableAuthIOException)mLastError).getIntent(), InitSplash.REQUEST_AUTHORIZATION);
+                } else {
+                    Dlog.e("The following error occured:\n"+ mLastError.getMessage());
+                }
+            }
         }
+
     }
 
 
@@ -176,7 +187,7 @@ public class SpreadSheetController {
     private class setRequesetTask extends AsyncTask<Void, Void, List<String>> {
         Sheets mSheetsService = null;
         Exception mLastError = null;
-        String SHEET_SET_NAME = "LoadRegisterMap";
+        String SHEET_SET_NAME = "UploadDataSheet";
         String SHEET_SET_RANGE = mSetRange;
         String SHEET_SET_VALUE = SHEET_SET_NAME +"!"+SHEET_SET_RANGE;
 
@@ -248,9 +259,6 @@ public class SpreadSheetController {
             Dlog.e("API ERROR: "+ mLastError);
         }
     }
-
-
-
 
 
 }

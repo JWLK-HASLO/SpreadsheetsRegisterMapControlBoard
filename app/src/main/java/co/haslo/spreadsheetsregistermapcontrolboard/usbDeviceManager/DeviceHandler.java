@@ -104,13 +104,22 @@ public class DeviceHandler extends Handler {
         } else {
             deviceConnectionError();
         }
+    }
 
+    public void run() {
+        Dlog.i("Run Data");
+        if(mDeviceCommunicator != null) {
+            DeviceRegisterSetting.run(mDeviceCommunicator);
+        } else {
+            deviceConnectionError();
+        }
     }
 
     public void resetData() {
         Dlog.i("Reset Data");
         if(mDeviceCommunicator != null) {
-            mDeviceCommunicator.DataTransferReset();
+            //mDeviceCommunicator.DataTransferReset();
+            DeviceRegisterSetting.reset(mDeviceCommunicator);
         } else {
             deviceConnectionError();
         }

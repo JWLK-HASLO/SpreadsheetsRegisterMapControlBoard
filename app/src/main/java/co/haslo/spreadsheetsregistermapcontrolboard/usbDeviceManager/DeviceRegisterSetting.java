@@ -40,9 +40,41 @@ public class DeviceRegisterSetting {
 
     }
 
+    public static void run(DeviceCommunicator device)
+    {
+        String[] sendStringArray =  {"98000003"};
+        int[] sendIntArray = hexStringArrayToInt32bit8HexArray(sendStringArray);
+        for(int ints : sendIntArray){
+            Dlog.d(String.format("0x%04X", ints));
+        }
+        try {
+            device.DataTransferBulkWrite(sendStringArray);
+        } catch (Exception e) {
+            e.printStackTrace();
+            Dlog.e(e.toString());
+        }
+
+    }
+
+    public static void reset(DeviceCommunicator device)
+    {
+        String[] sendStringArray =  {"98000000"};
+        int[] sendIntArray = hexStringArrayToInt32bit8HexArray(sendStringArray);
+        for(int ints : sendIntArray){
+            Dlog.d(String.format("0x%04X", ints));
+        }
+        try {
+            device.DataTransferBulkWrite(sendStringArray);
+        } catch (Exception e) {
+            e.printStackTrace();
+            Dlog.e(e.toString());
+        }
+
+    }
+
     public static void counterTest(DeviceCommunicator device)
     {
-        String[] sendStringArray =  {"98000000","980103FF", "9807001F","98080FFF","98090000"};
+        String[] sendStringArray =  {"98000000","980103FF", "9807001F","98080FFF","980900FF"};
         int[] sendIntArray = hexStringArrayToInt32bit8HexArray(sendStringArray);
         for(int ints : sendIntArray){
             Dlog.d(String.format("0x%04X", ints));

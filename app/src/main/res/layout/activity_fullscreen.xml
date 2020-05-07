@@ -64,11 +64,12 @@
             android:id="@+id/fullscreen_side"
             android:orientation="horizontal"
             style="?metaButtonBarStyle"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:layout_gravity="bottom"
-            android:gravity="center"
+            android:gravity="left"
             android:background="@color/colorDarkTP"
+            android:layout_marginLeft="30dp"
             android:layout_marginBottom="50dp"
             tools:ignore="UselessParent">
 
@@ -121,20 +122,12 @@
                 android:layout_height="match_parent">
 
                 <Button
-                    android:id="@+id/side_button_resetCounter"
-                    style="?metaButtonBarButtonStyle"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:text="C-RSET" />
-
-                <Button
-                    android:id="@+id/side_button_startCounter"
+                    android:id="@+id/side_button_reset"
                     style="?metaButtonBarButtonStyle"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="C-START" />
+                    android:text="RSET" />
 
             </LinearLayout>
 
@@ -145,12 +138,12 @@
                 android:layout_height="match_parent">
 
                 <Button
-                    android:id="@+id/side_button_reset"
+                    android:id="@+id/side_button_load"
                     style="?metaButtonBarButtonStyle"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="RESET" />
+                    android:text="LOAD" />
 
 
             </LinearLayout>
@@ -186,6 +179,23 @@
                     android:text="START" />
 
             </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                style="?metaButtonBarStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+
+                <Button
+                    android:id="@+id/side_button_convert"
+                    style="?metaButtonBarButtonStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="CONVERT" />
+
+            </LinearLayout>
+
 
             <LinearLayout
                 android:orientation="horizontal"

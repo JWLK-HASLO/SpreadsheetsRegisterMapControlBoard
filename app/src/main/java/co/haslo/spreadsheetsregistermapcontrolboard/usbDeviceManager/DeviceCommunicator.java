@@ -186,7 +186,6 @@ public class DeviceCommunicator {
             writeBuffer[i] = 0x00;
         }
         WriteBulkTransfer(writeBuffer, 0, writeBuffer.length);
-
     }
 
 

@@ -32,10 +32,10 @@ import static co.haslo.spreadsheetsregistermapcontrolboard.util.InterfaceUtil.sh
 
 public class InitSplash extends AppCompatActivity implements EasyPermissions.PermissionCallbacks {
     /*EasyPermissions Request Value*/
-    private static final int REQUEST_ACCOUNT_PICKER = 1000;
-    private static final int REQUEST_AUTHORIZATION = 1001;
-    private static final int REQUEST_GOOGLE_PLAY_SERVICE = 1002;
-    private static final int REQUEST_PERMISSION_GET_ACCOUNTS = 1003;
+    public static final int REQUEST_ACCOUNT_PICKER = 1000;
+    public static final int REQUEST_AUTHORIZATION = 1001;
+    public static final int REQUEST_GOOGLE_PLAY_SERVICE = 1002;
+    public static final int REQUEST_PERMISSION_GET_ACCOUNTS = 1003;
 
 
     public Dlog mDlog = new Dlog(this);
@@ -100,13 +100,13 @@ public class InitSplash extends AppCompatActivity implements EasyPermissions.Per
         GoogleApiAvailability apiAvailability = GoogleApiAvailability.getInstance();
         final int connectionStatusCode = apiAvailability.isGooglePlayServicesAvailable(this);
         if (apiAvailability.isUserResolvableError(connectionStatusCode)) {
-            showGooglePlayServicesAvailabilityErrorDialog(connectionStatusCode);
+            showGooglePlayServicesAvailabilityErrorDialog(connectionStatusCode, this);
         }
     }
 
-    void showGooglePlayServicesAvailabilityErrorDialog(final int connectionStatusCode) {
+    public static void showGooglePlayServicesAvailabilityErrorDialog(final int connectionStatusCode, AppCompatActivity appCompatActivity) {
         GoogleApiAvailability apiAvailability = GoogleApiAvailability.getInstance();
-        Dialog dialog = apiAvailability.getErrorDialog(this, connectionStatusCode, REQUEST_GOOGLE_PLAY_SERVICE);
+        Dialog dialog = apiAvailability.getErrorDialog(appCompatActivity, connectionStatusCode, REQUEST_GOOGLE_PLAY_SERVICE);
         dialog.show();
     }
 
