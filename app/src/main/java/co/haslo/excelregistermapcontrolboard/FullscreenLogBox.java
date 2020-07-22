@@ -1,4 +1,4 @@
-package co.haslo.spreadsheetsregistermapcontrolboard;
+package co.haslo.excelregistermapcontrolboard;
 
 import android.icu.text.SimpleDateFormat;
 import android.text.method.ScrollingMovementMethod;
@@ -9,10 +9,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Date;
 
-import co.haslo.spreadsheetsregistermapcontrolboard.util.Dlog;
-import co.haslo.spreadsheetsregistermapcontrolboard.util.InterfaceUtil;
+import co.haslo.excelregistermapcontrolboard.util.Dlog;
+import co.haslo.excelregistermapcontrolboard.util.InterfaceUtil;
 
 public class FullscreenLogBox {
 

@@ -1,4 +1,4 @@
-package co.haslo.spreadsheetsregistermapcontrolboard.util;
+package co.haslo.excelregistermapcontrolboard.util;
 
 import android.text.TextUtils;
 

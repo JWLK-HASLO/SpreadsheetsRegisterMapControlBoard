@@ -1,4 +1,4 @@
-package co.haslo.spreadsheetsregistermapcontrolboard.util;
+package co.haslo.excelregistermapcontrolboard.util;
 
 import java.util.Arrays;
 
@@ -9,9 +9,32 @@ public class ConvertDataType {
     // Short(16bit) = 4 Hex Numbers  / Range of Hex Value : 0 ~ FFFF / Range of Decimal Value : 0 ~ 65535( 0 ~ 2^16-1 )
     // Int(32bit) = 8 Hex Numbers  / Range of Hex Value : 0 ~ FFFFFFFF / Range of Decimal Value : 0 ~ 4,294,967,295( 0 ~ 2^32-1 )
 
+
+    /*
+     * int to 4hex Number : Example 10 => 000A
+     */
+
+    public static String intTo4HexString(int intValue) {
+
+        String result;
+
+        if(intValue < 65536 && intValue > 0){
+            result  = Integer.toHexString(0x10000 | intValue).substring(1).toUpperCase();
+        } else {
+            result = "error";
+        }
+
+
+        return result;
+    }
+
+
+
     /*
      *  int 32bit 8hex or short 16bit 4hex  => byte Array
      */
+
+
     public static byte[] intToByteBuffer(int intValue) {
 
         byte[] buffer = new byte[4];
@@ -155,5 +178,10 @@ public class ConvertDataType {
 
         return dataInt;
     }
+
+    /*
+     *  String List => byte Array or int Array
+     */
+
 
 }

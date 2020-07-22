@@ -1,4 +1,4 @@
-package co.haslo.spreadsheetsregistermapcontrolboard.usbDeviceElement;
+package co.haslo.excelregistermapcontrolboard.usbDeviceElement;
 
 import android.content.Context;
 

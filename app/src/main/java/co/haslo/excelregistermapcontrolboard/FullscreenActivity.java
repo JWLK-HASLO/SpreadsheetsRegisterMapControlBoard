@@ -1,13 +1,12 @@
-package co.haslo.spreadsheetsregistermapcontrolboard;
+package co.haslo.excelregistermapcontrolboard;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-import co.haslo.spreadsheetsregistermapcontrolboard.usbDeviceManager.DeviceHandler;
-import co.haslo.spreadsheetsregistermapcontrolboard.util.Dlog;
+import co.haslo.excelregistermapcontrolboard.usbDeviceManager.DeviceHandler;
+import co.haslo.excelregistermapcontrolboard.util.Dlog;
 
-import static co.haslo.spreadsheetsregistermapcontrolboard.RegisterMapController.mProgress;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.

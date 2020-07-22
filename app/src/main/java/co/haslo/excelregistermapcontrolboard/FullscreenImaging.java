@@ -1,4 +1,4 @@
-package co.haslo.spreadsheetsregistermapcontrolboard;
+package co.haslo.excelregistermapcontrolboard;
 
 import android.widget.ImageView;
 
@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
 
-import co.haslo.spreadsheetsregistermapcontrolboard.util.Dlog;
+import co.haslo.excelregistermapcontrolboard.util.Dlog;
 
 public class FullscreenImaging {
     private AppCompatActivity appCompatActivity;

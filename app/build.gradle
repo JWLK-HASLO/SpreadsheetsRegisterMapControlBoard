@@ -4,7 +4,7 @@ android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
     defaultConfig {
-        applicationId "co.haslo.spreadsheetsregistermapcontrolboard"
+        applicationId "co.haslo.excelregistermapcontrolboard"
         minSdkVersion 24
         targetSdkVersion 29
         versionCode 1
@@ -40,4 +40,5 @@ dependencies {
     implementation 'com.fasterxml.jackson.core:jackson-core:2.9.7'
     implementation 'com.fasterxml.jackson.core:jackson-annotations:2.9.7'
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.9.7'
+    implementation 'net.sourceforge.jexcelapi:jxl:2.6.12'
 }

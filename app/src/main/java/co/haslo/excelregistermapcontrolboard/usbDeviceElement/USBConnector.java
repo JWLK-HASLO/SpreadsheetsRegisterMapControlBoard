@@ -1,4 +1,4 @@
-package co.haslo.spreadsheetsregistermapcontrolboard.usbDeviceElement;
+package co.haslo.excelregistermapcontrolboard.usbDeviceElement;
 
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
@@ -11,7 +11,7 @@ import android.widget.Toast;
 
 import java.util.HashMap;
 
-import co.haslo.spreadsheetsregistermapcontrolboard.util.Dlog;
+import co.haslo.excelregistermapcontrolboard.util.Dlog;
 
 public class USBConnector {
 

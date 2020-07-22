@@ -1,4 +1,4 @@
-package co.haslo.spreadsheetsregistermapcontrolboard;
+package co.haslo.excelregistermapcontrolboard;
 
 import android.annotation.SuppressLint;
 import android.os.Handler;
@@ -9,7 +9,7 @@ import android.view.View;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
-import co.haslo.spreadsheetsregistermapcontrolboard.util.Dlog;
+import co.haslo.excelregistermapcontrolboard.util.Dlog;
 
 public class FullscreenController {
 

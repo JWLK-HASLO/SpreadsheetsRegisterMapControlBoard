@@ -1,4 +1,4 @@
-package co.haslo.spreadsheetsregistermapcontrolboard.usbDeviceManager;
+package co.haslo.excelregistermapcontrolboard.usbDeviceManager;
 
 import android.content.Context;
 import android.hardware.usb.UsbConstants;
@@ -11,9 +11,9 @@ import android.hardware.usb.UsbManager;
 import java.io.IOException;
 import java.util.Arrays;
 
-import co.haslo.spreadsheetsregistermapcontrolboard.util.Dlog;
+import co.haslo.excelregistermapcontrolboard.util.Dlog;
 
-import static co.haslo.spreadsheetsregistermapcontrolboard.util.ConvertDataType.hexStringArrayToByte8bit2HexArray;
+import static co.haslo.excelregistermapcontrolboard.util.ConvertDataType.hexStringArrayToByte8bit2HexArray;
 
 public class DeviceCommunicator {
 
@@ -170,7 +170,7 @@ public class DeviceCommunicator {
 
         /* Data Check */
         for(int i = 0 ; i < getBufferSize; i++) {
-            Dlog.i(String.format("TX[%05d] - %02X", i, writeBuffer[i]));
+            //Dlog.i(String.format("TX[%05d] - %02X", i, writeBuffer[i]));
         }
         writeBufferSize = WriteBulkTransfer(writeBuffer, 0, writeBuffer.length);
 

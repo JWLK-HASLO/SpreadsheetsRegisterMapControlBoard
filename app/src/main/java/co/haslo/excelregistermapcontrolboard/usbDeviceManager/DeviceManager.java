@@ -1,4 +1,4 @@
-package co.haslo.spreadsheetsregistermapcontrolboard.usbDeviceManager;
+package co.haslo.excelregistermapcontrolboard.usbDeviceManager;
 
 import android.content.Context;
 import android.hardware.usb.UsbDevice;
@@ -7,9 +7,9 @@ import android.os.Message;
 
 import java.io.IOException;
 
-import co.haslo.spreadsheetsregistermapcontrolboard.usbDeviceElement.USBConnectionListener;
-import co.haslo.spreadsheetsregistermapcontrolboard.usbDeviceElement.USBMonitoringService;
-import co.haslo.spreadsheetsregistermapcontrolboard.util.Dlog;
+import co.haslo.excelregistermapcontrolboard.usbDeviceElement.USBConnectionListener;
+import co.haslo.excelregistermapcontrolboard.usbDeviceElement.USBMonitoringService;
+import co.haslo.excelregistermapcontrolboard.util.Dlog;
 
 
 public class DeviceManager {
@@ -104,5 +104,4 @@ public class DeviceManager {
         });
     }
 
-    //DeviceComunicator
 }

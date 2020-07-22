@@ -1,7 +1,6 @@
-package co.haslo.spreadsheetsregistermapcontrolboard.util;
+package co.haslo.excelregistermapcontrolboard.util;
 
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.Window;
@@ -11,7 +10,7 @@ import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import co.haslo.spreadsheetsregistermapcontrolboard.R;
+import co.haslo.excelregistermapcontrolboard.R;
 
 public class CustomAnimationDialog extends ProgressDialog {
 
